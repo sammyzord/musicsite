@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <form method="POST" action="" class="row col-md-6 justify-content-center gy-4 bg-dark border px-4 pb-4">
+      {% csrf_token %}
+      <h4 class="text-white">Registrar Usuário</h2>
+      <div class="col-12">
+        {{form.username}}
+      </div>
+      
+      <div class="col-12">
+        {{form.password1}}
+      </div>
+      
+      <div class="col-12">
+        {{form.password2}}
+      </div>
+      
+      <div class="text-white">
+        {{form.errors}}
+      </div>
+      <button type="submit" class="col-md-6 btn btn-outline-light">Registrar</button>
+      <div class="col-md-6"></div>
+    </form>
+  </div>
+</div>
+{% endblock %}

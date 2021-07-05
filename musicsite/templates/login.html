@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <form method="POST" action="" class="row col-md-8 justify-content-center gy-4 bg-dark border px-4 pb-4">
+      {% csrf_token %}
+      <h4 class="text-white">Login do usuário</h2>
+      <div class="col-12">
+        <input type="text" class="form-control" name="username" placeholder="Usuário">
+      </div>
+      
+      <div class="col-12">
+        <input type="password" class="form-control" name="password" placeholder="Senha">
+      </div>
+      
+      <button type="submit" class="col-md-6 btn btn-outline-light align-self-start">Entrar</button>
+      <div class="col-md-6">
+        <p class="text-white">Não possui usuário?</p>
+        <a class="text-white" href="/register">Cirar usuário</a>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

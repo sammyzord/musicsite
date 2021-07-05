@@ -19,7 +19,10 @@ from . import views
 
 urlpatterns = [
     path("", views.index, name="index"),
-    path("songs", views.songs, name="songs"),
-    path("trending", views.trending, name="trending"),
+    path("register", views.registerPage, name="register"),
+    path("login", views.loginPage, name="login"),
+    path("logout", views.logoutUser, name="logout"),
+    path("songs", views.songsPage, name="songs"),
+    path("trending", views.trendingPage, name="trending"),
     path("admin/", admin.site.urls),
 ]
