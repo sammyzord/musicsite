@@ -1,5 +1,48 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Lorem ipsum</h1>
+<div class="container py-5">
+  <form method="POST" action="">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+      <select class="form-select" aria-label=".form-select-lg example" name="country_name">
+        <option selected value='default'>Escolha um país</option>
+        {% for country in countries %}
+        <option value="{{country}}">{{country}}</option>
+        {% endfor %}
+      </select>
+      <button class="btn btn-outline-secondary" type="submit">Consultar</button>
+    </div>
+  </form>
+  {% if playlist %}
+  <div class="border p-4 bg-dark mt-5">
+    <h3 class="text-white mb-4">Top 50 - {{country}}</h3>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">Nome da Música</th>
+          <th scope="col">Nome do Artista</th>
+          <th scope="col">Album</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for song in playlist %}
+      <tr>
+        <td>{{ song.track.name }}</td>
+        <td>
+          {% for artist in song.track.artists %}
+            {% if not forloop.last %}
+              {{ artist.name|add:", " }}
+            {% else %}
+              {{ artist.name }}
+            {% endif %}
+          {% endfor %}
+        </td>
+        <td>{{ song.track.album.name }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
 {% endblock %}
