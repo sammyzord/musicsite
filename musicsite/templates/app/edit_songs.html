@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <div class="row py-4 justify-content-center">
+    <div class="col-md-6 bg-dark border p-4">
+      <h3 class="text-white mb-4">Editar Música</h3>
+      <form method="POST" action="">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="artistNameInput" class="form-label text-white">Nome do Artista</label>
+          <input type="text" class="form-control" value="{{song.artist_name}}" name="artist_name" required>
+        </div>
+        <div class="mb-3">
+          <label for="songNameInput" class="form-label text-white">Nome da Música</label>
+          <input type="text" class="form-control" value="{{song.song_name}}" name="song_name" required>
+        </div>
+        <div class="mb-3">
+          <label for="musicGenreInput" class="form-label text-white">Estilo Musical</label>
+          <input type="text" class="form-control" value="{{song.song_genre}}" name="song_genre" required>
+        </div>
+        <button type="submit" class="btn btn-outline-light">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

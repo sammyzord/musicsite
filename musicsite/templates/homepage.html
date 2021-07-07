@@ -14,7 +14,7 @@
         <h2>Siga tendências</h2>
         <p class="mt-4">Veja quais musicas estão fazendo sucesso em qual parte do mundo.</p>
         {% if user.is_authenticated %}
-        <a class="btn btn-outline-light" href="/trending">Ver tendências</a>
+        <a class="btn btn-outline-light" href="{% url 'trending' %}">Ver tendências</a>
         {% endif %}
       </div>
     </div>
@@ -23,7 +23,7 @@
         <h2>Cadastre suas músicas</h2>
         <p class="mt-4">Cadastre as músicas que você produziu em nosso banco de dados.</p>
         {% if user.is_authenticated %}
-        <a class="btn btn-outline-secondary" href="/songs">Cadastrar músicas</a>
+        <a class="btn btn-outline-secondary" href="{% url 'songs' %}">Cadastrar músicas</a>
         {% endif %}
       </div>
     </div>

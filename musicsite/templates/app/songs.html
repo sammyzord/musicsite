@@ -2,24 +2,64 @@
 
 {% block content %}
 <div class="container">
-  <div class="row py-4">
-    <div class="col-md-6">
-      <form>
+  <div class="row py-4 justify-content-center">
+    <div class="col-md-6 bg-dark border p-4">
+      <h3 class="text-white mb-4">Cadastrar Música</h3>
+      <form method="POST" action="">
+        {% csrf_token %}
         <div class="mb-3">
-          <label for="artistNameInput" class="form-label">Nome do Artista</label>
-          <input type="text" class="form-control" id="artistNameInput">
+          <label for="artistNameInput" class="form-label text-white">Nome do Artista</label>
+          <input type="text" class="form-control" name="artist_name" required>
         </div>
         <div class="mb-3">
-          <label for="songNameInput" class="form-label">Nome da Música</label>
-          <input type="text" class="form-control" id="songNameInput">
+          <label for="songNameInput" class="form-label text-white">Nome da Música</label>
+          <input type="text" class="form-control" name="song_name" required>
         </div>
         <div class="mb-3">
-          <label for="musicGenreInput" class="form-label">Estilo Musical</label>
-          <input type="text" class="form-control" id="musicGenreInput">
+          <label for="musicGenreInput" class="form-label text-white">Estilo Musical</label>
+          <input type="text" class="form-control" name="song_genre" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-outline-light">Submit</button>
       </form>
     </div>
   </div>
+  {% if songs %}
+  <div class="border p-4 bg-dark">
+    <h3 class="text-white mb-4">Suas Músicas</h3>
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">ID Música</th>
+          <th scope="col">Nome da Música</th>
+          <th scope="col">Estilo da Música</th>
+          <th scope="col">Nome do Artista</th>
+          <th scope="col">Data de Criação</th>
+          <th scope="col">Data de Edição</th>
+          <th scope="col">Editar</th>
+          <th scope="col">Deletar</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for song in songs %}
+      <tr>
+        <th scope="row">{{ song.id }}</th>
+        <td>{{ song.song_name }}</td>
+        <td>{{ song.song_genre }}</td>
+        <td>{{ song.artist_name }}</td>
+        <td>{{ song.created_at }}</td>
+        <td>{{ song.updated_at }}</td>
+        <td><a class="btn btn-outline-light" href="{% url 'edit_song' song.id %}">Editar</a></td>
+        <td>
+          <form action="{% url 'delete_song' song.id %}"  method="POST">
+            {% csrf_token %}
+            <button class="btn btn-outline-light" type="submit">Deletar</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+  {% endif %}
 </div>
 {% endblock %}

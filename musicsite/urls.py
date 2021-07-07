@@ -23,6 +23,8 @@ urlpatterns = [
     path("login", views.loginPage, name="login"),
     path("logout", views.logoutUser, name="logout"),
     path("songs", views.songsPage, name="songs"),
+    path("songs/edit/<int:song_id>", views.songsEdit, name="edit_song"),
+    path("songs/delete/<int:song_id>", views.songsDelete, name="delete_song"),
     path("trending", views.trendingPage, name="trending"),
     path("admin/", admin.site.urls),
 ]
