@@ -46,4 +46,4 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${CC_TEST_REPORTER_ID}
         with:
-          coverageCommand: docker-compose run web coverage run --source='.' manage.py test
+          coverageCommand: docker-compose up coverage

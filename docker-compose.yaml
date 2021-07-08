@@ -53,6 +53,29 @@ services:
     networks:
       - postgres-compose-network
 
+  coverage:
+    build: .
+    command:
+      [
+        "./wait-for-it.sh",
+        "db:5432",
+        "--",
+        "coverage",
+        "run",
+        "manage.py",
+        "test",
+      ]
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - postgres-compose-network
+
 networks:
   postgres-compose-network:
     driver: bridge
