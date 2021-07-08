@@ -29,18 +29,10 @@ jobs:
       - name: test
         run: |
           touch .env
-          docker-compose up test
-
-  coverage:
-    needs: [test]
-    name: coverage
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: touch .env
+          docker-compose up coverage
 
       - uses: paambaati/codeclimate-action@v2.7.5
         env:
           CC_TEST_REPORTER_ID: ${CC_TEST_REPORTER_ID}
         with:
-          coverageCommand: docker-compose up coverage
+          coverageCommand: docker-compose run coverage coverage xml
