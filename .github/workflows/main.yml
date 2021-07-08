@@ -38,6 +38,7 @@ jobs:
           coverageCommand: docker-compose run coverage coverage xml
 
   deploy:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
