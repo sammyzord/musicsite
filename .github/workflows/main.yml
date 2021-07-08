@@ -28,12 +28,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: test
         run: |
-          echo $CC_TEST_REPORTER_ID
           touch .env
           docker-compose up coverage
 
       - uses: paambaati/codeclimate-action@v2.7.5
         env:
-          CC_TEST_REPORTER_ID: $CC_TEST_REPORTER_ID
+          CC_TEST_REPORTER_ID: ${{secret.CC_TEST_REPORTER_ID}}
         with:
           coverageCommand: docker-compose run coverage coverage xml
