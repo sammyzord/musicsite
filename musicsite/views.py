@@ -10,7 +10,7 @@ import json
 import os
 import logging
 
-logger = logging.getLogger("django")
+logger = logging.getLogger("views")
 
 # from django.http import HttpResponse
 
