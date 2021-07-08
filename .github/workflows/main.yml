@@ -29,8 +29,7 @@ jobs:
       - name: test
         run: |
           touch .env
-          docker-compose build web
-          docker-compose run web python3 manage.py test
+          docker-compose up test
 
   coverage:
     needs: [test]

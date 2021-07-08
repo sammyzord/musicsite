@@ -14,7 +14,7 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
     env_file:
       - .env
     volumes:
@@ -22,7 +22,7 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      - db
+      - pgadmin
     networks:
       - postgres-compose-network
 
@@ -33,6 +33,21 @@ services:
       PGADMIN_DEFAULT_PASSWORD: "pgpassword"
     ports:
       - "16543:80"
+    depends_on:
+      - db
+    networks:
+      - postgres-compose-network
+
+  test:
+    build: .
+    command:
+      ["./wait-for-it.sh", "db:5432", "--", "python", "manage.py", "test"]
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
     depends_on:
       - db
     networks:
