@@ -39,10 +39,9 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - uses: actions/setup-node@master
-        
-      run: |
-          touch .env
-          docker-compose build web
+
+      - run: touch .env
+      - run: docker-compose build web
 
       - uses: paambaati/codeclimate-action@v2.2.4
         env:
